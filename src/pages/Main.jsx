@@ -1,11 +1,14 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 function Main() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const userList = useSelector((state) => state.userList);
+  console.log(userList);
   return (
     <>
       <StHeader>
@@ -13,7 +16,7 @@ function Main() {
         <div>
           <button
             onClick={() => {
-              navigate("/Join");
+              navigate("/Login");
             }}
           >
             로그인
@@ -21,7 +24,7 @@ function Main() {
           &nbsp;
           <button
             onClick={() => {
-              navigate("/Login");
+              navigate("/join");
             }}
           >
             회원 가입
