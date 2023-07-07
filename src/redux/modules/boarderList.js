@@ -10,7 +10,7 @@ const initialState = [
     title: "데미안",
     contents: "이 책은 별로네요",
     writerId: crypto.randomUUID(),
-    isDeleted: false,
+    isDelete: false,
   },
 ];
 
@@ -24,7 +24,7 @@ export const boarderList = createSlice({
         title: action.payload.title,
         contents: action.payload.contents,
         writerId: action.payload.writerId,
-        isDeleted: false,
+        isDelete: false,
       });
     },
   },

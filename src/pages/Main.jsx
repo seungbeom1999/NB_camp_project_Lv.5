@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { logout } from "../redux/modules/userList";
+import axios from "axios";
 
 function Main() {
   const dispatch = useDispatch();
@@ -15,6 +16,17 @@ function Main() {
   console.log("userList", userList);
   console.log("boardList", boardList);
 
+  //axios 사용 방법
+  const [write, setWrite] = useState(null);
+  const fetchTodos = async () => {
+    const { data } = await axios.get("http://localhost:4000/write");
+    console.log("data", data);
+    setWrite(data);
+  };
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
   const access = () => {
     if (loginUser) {
       return alert("조금만 기다려주세요~~");
@@ -77,8 +89,8 @@ function Main() {
           <h1>게시판</h1>
         </div>
         <div>
-          {boardList
-            .filter((board) => board.isDeleted === false)
+          {write
+            ?.filter((board) => board.isDelete === false)
             .map((board) => {
               return (
                 <Stdiv key={board.id} onClick={access}>
@@ -109,7 +121,9 @@ const Stdiv = styled.button`
   padding: 5px;
   margin: 5px;
   max-width: 250px;
+  min-width: 180px;
   max-height: 130px;
+  min-height: 125px;
   background-color: #bfd8ff;
   border: 1px solid black;
   border-radius: 12px;
