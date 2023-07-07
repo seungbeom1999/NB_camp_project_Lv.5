@@ -1,10 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 function Main() {
-  const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const userList = useSelector((state) => state.userList);

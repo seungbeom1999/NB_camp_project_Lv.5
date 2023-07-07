@@ -17,13 +17,25 @@ export const userList = createSlice({
   reducers: {
     join: (state, action) => {
       const newUser = {
-        id: shortid.generate(),
+        id: crypto.randomUUID(),
         email: action.palyoad.email,
         password: action.palyoad.password,
         userName: action.palyoad.userName,
         isLogin: false,
       };
       state.push(newUser);
+    },
+    login: (state, action) => {
+      return state.map((item) => {
+        if (
+          item.password === action.palyoad.password &&
+          item.email === action.payload.email
+        ) {
+          return { ...item, isLogin: !item.isLogin };
+        } else {
+          return item;
+        }
+      });
     },
   },
 });
