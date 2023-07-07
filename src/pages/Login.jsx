@@ -10,10 +10,11 @@ function Login() {
     setEmail("");
     setPassword("");
   };
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const data = useSelector((state) => state.userList);
-  console.log(data);
+  // console.log(data);
 
   // 로그인 기능
   const loginSubmit = () => {
@@ -27,11 +28,29 @@ function Login() {
   const verificationProcess = (e) => {
     e.preventDefault();
     if (window.confirm("로그인 하시겠습니까?")) {
-      return loginSubmit();
+      if (validation()) {
+        return loginSubmit();
+      }
     } else {
       alert("다시 입력해주세요");
       valueReset();
     }
+  };
+
+  //유효성 검사
+  const validation = () => {
+    let value = true;
+    const userId = data.find((user) => user.email === email);
+    const userPassword = data.find((user) => user.password === password);
+    if (!userId) {
+      alert("아이디가 틀렸습니다.");
+      value = false;
+    }
+    if (!userPassword) {
+      alert("비밀번호가 틀렸습니다.");
+      value = false;
+    }
+    return value;
   };
 
   return (
@@ -63,7 +82,6 @@ function Login() {
       </div>
       <div>
         <button>로그인</button>
-        {password}
       </div>
     </form>
   );

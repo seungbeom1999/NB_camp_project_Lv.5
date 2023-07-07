@@ -36,8 +36,13 @@ export const userList = createSlice({
         }
       });
     },
+    logout: (state, action) => {
+      return state.map((user) => {
+        return { ...user, isLogin: false };
+      });
+    },
   },
 });
 
-export const { join, login } = userList.actions;
+export const { join, login, logout } = userList.actions;
 export default userList.reducer;
