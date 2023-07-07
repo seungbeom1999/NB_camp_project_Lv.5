@@ -14,7 +14,13 @@ function Main() {
   console.log("boardList", boardList);
   const loginUser = userList.find((user) => user.isLogin === true);
   // console.log(loginUser);
-
+  const access = () => {
+    if (loginUser) {
+      return alert("조금만 기다려주세요~~");
+    } else {
+      return alert("로그인이 되어야 가능합니다.");
+    }
+  };
   return (
     <>
       <StHeader>
@@ -74,9 +80,10 @@ function Main() {
             .filter((board) => board.isDeleted === false)
             .map((board) => {
               return (
-                <Stdiv key={board.id}>
+                <Stdiv key={board.id} onClick={access}>
                   <h3>제목: {board.title}</h3>
                   <h4>review: {board.contents}</h4>
+                  <button>댓글 작성</button>
                 </Stdiv>
               );
             })}
@@ -97,11 +104,11 @@ const StHeader = styled.header`
   margin: 5px;
 `;
 
-const Stdiv = styled.div`
+const Stdiv = styled.button`
   padding: 5px;
   margin: 5px;
   max-width: 250px;
-  max-height: 105px;
+  max-height: 130px;
   background-color: #bfd8ff;
   border: 1px solid black;
   border-radius: 12px;

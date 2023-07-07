@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { addPost } from "../redux/modules/boarderList";
 
 function Write() {
@@ -9,15 +9,16 @@ function Write() {
 
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
-  const location = useLocation();
-  // const writerId = location.state.loginUserId;
+
+  // const userList = useSelector((state) => state.userList);
+  // const loginUser = userList.find((user) => user.isLogin === true);
+  // const userName = loginUser.userName;
 
   const handleWriteBtn = () => {
     dispatch(
       addPost({
         title,
         contents,
-        // writerId,
       })
     );
     navigate("/");

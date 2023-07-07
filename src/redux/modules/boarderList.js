@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// const userList = useSelector((state) => state.userList);
+// const loginUser = userList.find((user) => user.isLogin === true);
+// const userName = loginUser.userName;
+
 const initialState = [
   {
     id: crypto.randomUUID(),
