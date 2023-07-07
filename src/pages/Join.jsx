@@ -10,13 +10,22 @@ function Join() {
   const [userName, setUserName] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const joimMember = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("비밀번호가 다릅니다 다시 입력해주세요");
+      return false;
+    }
+    dispatch(join({ email, password, userName }));
+    alert("회원가입 축하드립니다!!");
+    navigate("/");
+  };
   return (
     <div>
       <div>
         <h1>회원가입</h1>
       </div>
-      <form>
+      <form onSubmit={joimMember}>
         <div>
           <span>아이디 </span> <br />
           <input
@@ -61,19 +70,7 @@ function Join() {
             placeholder="닉네임을 입력하세요"
           />
         </div>
-        <button
-          onClick={() => {
-            if (password !== confirmPassword) {
-              alert("비밀번호가 다릅니다 다시 입력해주세요");
-              return false;
-            }
-            dispatch(join({ email, password, userName }));
-            alert("회원가입 축하드립니다!!");
-            navigate("/");
-          }}
-        >
-          회원가입
-        </button>
+        <button>회원가입</button>
       </form>
     </div>
   );

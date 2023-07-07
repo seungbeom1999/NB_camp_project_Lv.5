@@ -8,10 +8,13 @@ function Main() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const boardList = useSelector((state) => state.boarderList);
   const userList = useSelector((state) => state.userList);
   console.log("userList", userList);
+  console.log("boardList", boardList);
   const loginUser = userList.find((user) => user.isLogin === true);
   // console.log(loginUser);
+
   return (
     <>
       <StHeader>
@@ -21,7 +24,7 @@ function Main() {
             <>
               <button
                 onClick={() => {
-                  navigate("/Write");
+                  navigate("/Write", { state: { loginUserId: loginUser.id } });
                 }}
               >
                 글 쓰기
@@ -60,18 +63,23 @@ function Main() {
       {loginUser && (
         <StHeader>
           <span>{loginUser.userName}님 반갑습니다~</span>
-          <button
-            onClick={() => {
-              navigate("/Write");
-            }}
-          >
-            글 쓰기
-          </button>
         </StHeader>
       )}
       <main>
         <div>
           <h1>게시판</h1>
+        </div>
+        <div>
+          {boardList
+            .filter((board) => board.isDeleted === false)
+            .map((board) => {
+              return (
+                <Stdiv key={board.id}>
+                  <h3>제목: {board.title}</h3>
+                  <h4>review: {board.contents}</h4>
+                </Stdiv>
+              );
+            })}
         </div>
       </main>
     </>
@@ -87,4 +95,14 @@ const StHeader = styled.header`
   border-radius: 12px;
   padding: 5px;
   margin: 5px;
+`;
+
+const Stdiv = styled.div`
+  padding: 5px;
+  margin: 5px;
+  max-width: 250px;
+  max-height: 105px;
+  background-color: #bfd8ff;
+  border: 1px solid black;
+  border-radius: 12px;
 `;
