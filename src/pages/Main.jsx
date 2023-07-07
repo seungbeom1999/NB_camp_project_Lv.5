@@ -9,11 +9,12 @@ function Main() {
   const navigate = useNavigate();
 
   const boardList = useSelector((state) => state.boarderList);
+
   const userList = useSelector((state) => state.userList);
+  const loginUser = userList.find((user) => user.isLogin === true);
   console.log("userList", userList);
   console.log("boardList", boardList);
-  const loginUser = userList.find((user) => user.isLogin === true);
-  // console.log(loginUser);
+
   const access = () => {
     if (loginUser) {
       return alert("조금만 기다려주세요~~");
@@ -30,7 +31,7 @@ function Main() {
             <>
               <button
                 onClick={() => {
-                  navigate("/Write", { state: { loginUserId: loginUser.id } });
+                  navigate("/Write");
                 }}
               >
                 글 쓰기

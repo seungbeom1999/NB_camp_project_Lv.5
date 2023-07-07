@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../redux/modules/userList";
+import useInput from "../hooks/useInput";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useInput();
+  const [password, setPassword] = useInput();
   const valueReset = () => {
     setEmail("");
     setPassword("");
@@ -63,9 +64,7 @@ function Login() {
         <input
           type="text"
           value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
+          onChange={setEmail}
           placeholder="이메일을 입력해주세요"
         />
       </div>
@@ -74,9 +73,7 @@ function Login() {
         <input
           type="password"
           value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
+          onChange={setPassword}
           placeholder="비밀번호를 입력해주세요"
         />
       </div>

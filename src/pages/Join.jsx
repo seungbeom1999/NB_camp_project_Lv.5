@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { join } from "../redux/modules/userList";
+import useInput from "../hooks/useInput";
 
 function Join() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useInput();
+  const [password, setPassword] = useInput();
+  const [confirmPassword, setConfirmPassword] = useInput();
+  const [userName, setUserName] = useInput();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const joimMember = (e) => {
@@ -31,42 +32,37 @@ function Join() {
           <input
             type="text"
             value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+            onChange={setEmail}
             placeholder="이메일을 입력하세요"
           />
         </div>
+
         <div>
           <span>비밀번호 </span> <br />
           <input
             type="password"
             value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            onChange={setPassword}
             placeholder="비밀번호를 입력하세요"
           />
         </div>
+
         <div>
           <span>확인 비밀번호 </span> <br />
           <input
             type="password"
             value={confirmPassword}
-            onChange={(e) => {
-              setConfirmPassword(e.target.value);
-            }}
+            onChange={setConfirmPassword}
             placeholder="비밀번호를 입력하세요"
           />
         </div>
+
         <div>
           <span>닉네임 </span> <br />
           <input
             type="text"
             value={userName}
-            onChange={(e) => {
-              setUserName(e.target.value);
-            }}
+            onChange={setUserName}
             placeholder="닉네임을 입력하세요"
           />
         </div>

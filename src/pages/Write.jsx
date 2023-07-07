@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addPost } from "../redux/modules/boarderList";
+import useInput from "../hooks/useInput";
 
 function Write() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
+  const [title, setTitle] = useInput();
+  const [contents, setContents] = useInput();
 
   // const userList = useSelector((state) => state.userList);
   // const loginUser = userList.find((user) => user.isLogin === true);
@@ -32,9 +33,7 @@ function Write() {
           <input
             type="text"
             value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
+            onChange={setTitle}
             placeholder="글 제목을 입력해주세요"
           />{" "}
           <br />
@@ -42,9 +41,7 @@ function Write() {
           <input
             type="text"
             value={contents}
-            onChange={(e) => {
-              setContents(e.target.value);
-            }}
+            onChange={setContents}
             placeholder="글 제목을 입력해주세요"
           />
         </div>
