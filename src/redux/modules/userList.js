@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import shortid from "shortid";
 
 const initialState = [
   {
-    id: shortid.generate(),
+    id: crypto.randomUUID(),
     email: "test@naver.com",
     password: "0123",
     userName: "왕만두",
@@ -18,9 +17,9 @@ export const userList = createSlice({
     join: (state, action) => {
       const newUser = {
         id: crypto.randomUUID(),
-        email: action.palyoad.email,
-        password: action.palyoad.password,
-        userName: action.palyoad.userName,
+        email: action.payload.email,
+        password: action.payload.password,
+        userName: action.payload.userName,
         isLogin: false,
       };
       state.push(newUser);
@@ -28,8 +27,8 @@ export const userList = createSlice({
     login: (state, action) => {
       return state.map((item) => {
         if (
-          item.password === action.palyoad.password &&
-          item.email === action.payload.email
+          item.email === action.payload.email &&
+          item.password === action.payload.password
         ) {
           return { ...item, isLogin: !item.isLogin };
         } else {
@@ -40,5 +39,5 @@ export const userList = createSlice({
   },
 });
 
-export const { join } = userList.actions;
+export const { join, login } = userList.actions;
 export default userList.reducer;
