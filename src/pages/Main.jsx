@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import { logout } from "../redux/modules/userList";
 import axios from "axios";
 
 function Main() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   //axios 사용 방법
@@ -16,7 +13,6 @@ function Main() {
 
   const writeData = async () => {
     const { data } = await axios.get("http://localhost:4000/write");
-    // console.log("data", data);
     setWrite(data);
   };
 
@@ -27,7 +23,6 @@ function Main() {
       setLogin(loginUser.isLogin);
       setUser(loginUser);
     }
-    // console.log(loginUser);
   };
 
   const logoutSubmit = async () => {
@@ -41,15 +36,21 @@ function Main() {
       setLogin(false)
     );
   };
-
+  const deleteBtn = async (id) => {
+    const deleteCheck = window.confirm("삭제하시겟습니까?");
+    if (deleteCheck) {
+      await axios.delete(`http://localhost:4000/write/${id}`);
+      alert("삭제되었습니다.");
+    }
+  };
   useEffect(() => {
     writeData();
     userData();
   }, []);
 
-  const access = () => {
+  const access = (id) => {
     if (login) {
-      return alert("조금만 기다려주세요~~");
+      return deleteBtn(id);
     } else {
       return alert("로그인이 되어야 가능합니다.");
     }
@@ -113,10 +114,18 @@ function Main() {
             ?.filter((board) => board.isDelete === false)
             .map((board) => {
               return (
-                <StBtn key={board.id} onClick={access}>
+                <StBtn key={board.id}>
                   <h3>제목: {board.title}</h3>
                   <h4>review: {board.contents}</h4>
-                  <button type="button">댓글 작성</button>
+                  <button type="button">댓글 작성</button> &nbsp;
+                  <button
+                    type="button"
+                    onClick={() => {
+                      access(board.id);
+                    }}
+                  >
+                    삭제
+                  </button>
                 </StBtn>
               );
             })}
