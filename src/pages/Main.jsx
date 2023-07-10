@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import axios from "axios";
+import useInput from "../hooks/useInput";
+import serachImg from "../img/search.png";
 
 function Main() {
   const navigate = useNavigate();
@@ -10,6 +12,8 @@ function Main() {
   const [write, setWrite] = useState(null);
   const [login, setLogin] = useState(false);
   const [user, setUser] = useState();
+  const [title, setTitle] = useInput();
+  const [filterWrite, setFilterWrite] = useState([]);
 
   const writeData = async () => {
     const { data } = await axios.get("http://localhost:4000/write");
@@ -18,26 +22,38 @@ function Main() {
 
   const userData = async () => {
     const { data } = await axios.get("http://localhost:4000/login");
-    const loginUser = data.find((user) => user.isLogin === true);
+    const loginUser = data.find((userData) => userData.isLogin === true);
     if (loginUser) {
       setLogin(loginUser.isLogin);
       setUser(loginUser);
     }
   };
 
-  const logoutSubmit = async () => {
-    alert("로그아웃 되었습니다.");
-    await axios.put(
-      `http://localhost:4000/login/${user.id}`,
-      {
-        ...user,
-        isLogin: false,
-      },
-      setLogin(false)
-    );
+  const writeFilter = (e) => {
+    e.preventDefault();
+    const writefilteringList = write.filter((item) => item.title === title);
+    const updateList = writefilteringList.map((item) => ({
+      ...item,
+      search: true,
+    }));
+    const filterList = write.map((item) => ({
+      ...item,
+      search: true,
+    }));
+    setWrite(filterList);
+    setFilterWrite(updateList);
   };
 
-  const access = (id, writeName) => {
+  const logoutSubmit = async () => {
+    alert("로그아웃 되었습니다.");
+    await axios.put(`http://localhost:4000/login/${user.id}`, {
+      ...user,
+      isLogin: false,
+    });
+    setLogin(false);
+  };
+
+  const access = ({ id, writeName }) => {
     if (login) {
       return vardition(id, writeName);
     } else {
@@ -45,9 +61,9 @@ function Main() {
     }
   };
 
-  const vardition = (writeName, id) => {
+  const vardition = (id, writeName) => {
     console.log(writeName);
-    if (user.userName == writeName) {
+    if (user.userName === writeName) {
       return deleteBtn(id);
     } else {
       return alert("작성한 글이 아닙니다.");
@@ -65,7 +81,7 @@ function Main() {
   useEffect(() => {
     writeData();
     userData();
-  }, [userData]);
+  }, []);
 
   return (
     <>
@@ -121,29 +137,59 @@ function Main() {
         <div>
           <h1>게시판</h1>
         </div>
-        <div>
+        <StSearch>
+          검색: &nbsp;
+          <input type="text" value={title} onChange={setTitle} /> &nbsp;
+          <button onClick={(e) => writeFilter(e)}>
+            <img src={serachImg} alt="돋보기" />
+          </button>
+        </StSearch>
+
+        <StBtnList>
           {write
-            ?.filter((board) => board.isDelete === false)
+            ?.filter((board) => board.search === false)
             .map((board) => {
               return (
-                <Stform key={board.id}>
+                <StWriteForm key={board.id}>
                   <StWrite>제목: {board.title}</StWrite>
                   <StWrite>review: {board.contents}</StWrite>
-                  <StBtnList>
-                    <button type="button">댓글 작성</button> &nbsp;
+                  <div>
+                    <button>댓글 작성</button> &nbsp;
                     <button
-                      type="button"
                       onClick={() => {
-                        access(board.writeName, board.id);
+                        access({ writeName: board.writeName, id: board.id });
                       }}
                     >
                       삭제
                     </button>
-                  </StBtnList>
-                </Stform>
+                  </div>
+                </StWriteForm>
               );
             })}
-        </div>
+        </StBtnList>
+
+        <StBtnList>
+          {filterWrite
+            ?.filter((board) => board.search === true)
+            .map((board) => {
+              return (
+                <StWriteForm key={board.id}>
+                  <StWrite>제목: {board.title}</StWrite>
+                  <StWrite>review: {board.contents}</StWrite>
+                  <div>
+                    <button>댓글 작성</button> &nbsp;
+                    <button
+                      onClick={() => {
+                        access({ writeName: board.writeName, id: board.id });
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </div>
+                </StWriteForm>
+              );
+            })}
+        </StBtnList>
       </main>
     </>
   );
@@ -160,7 +206,13 @@ const StHeader = styled.header`
   margin: 5px;
 `;
 
-const Stform = styled.form`
+const StSearch = styled.form`
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+`;
+
+const StWriteForm = styled.form`
   padding: 5px;
   max-width: 250px;
   min-width: 180px;
@@ -178,8 +230,8 @@ const StWrite = styled.div`
   font-weight: 700;
 `;
 const StBtnList = styled.div`
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   padding: 5px;
   margin: 5px;
 `;

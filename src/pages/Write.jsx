@@ -25,7 +25,7 @@ function Write() {
     title,
     contents,
     writeName: userName,
-    isDelete: false,
+    search: false,
   };
 
   const onSubMitHandler = async () => {

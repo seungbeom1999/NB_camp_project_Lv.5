@@ -5,7 +5,7 @@
       "email": "khhds00@naver.com",
       "password": "tmdqja12",
       "userName": "승범",
-      "isLogin": false
+      "isLogin": true
     },
     {
       "id": "8ba9b329-1d2e-4112-a2ea-223be773fb7f",
@@ -21,7 +21,14 @@
       "title": "이제 될거 같다",
       "contents": "진짜로",
       "writeName": "짜장면",
-      "isDelete": false
+      "search": false
+    },
+    {
+      "id": "8244cb2e-637a-43da-a8f4-87a4e28908c8",
+      "title": "데미안",
+      "contents": "고전 명작",
+      "writeName": "승범",
+      "search": false
     }
   ],
   "comments": [
