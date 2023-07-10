@@ -1,26 +1,26 @@
 {
   "login": [
     {
-      "todos": "1",
-      "email": "test@naver.com",
-      "password": 1234,
-      "userName": "쾌청만두",
-      "isLogin": false
-    },
-    {
       "id": "4c041fea-dfe0-4da0-bc53-ad09bbbfc36d",
       "email": "khhds00@naver.com",
       "password": "tmdqja12",
       "userName": "승범",
-      "isLogin": true
+      "isLogin": false
+    },
+    {
+      "id": "8ba9b329-1d2e-4112-a2ea-223be773fb7f",
+      "email": "test@naver.com",
+      "password": "tmdqja12",
+      "userName": "짜장면",
+      "isLogin": false
     }
   ],
   "write": [
     {
-      "id": "1",
-      "title": "데미안",
-      "contents": "재미없어",
-      "writeName": "쾌청만두",
+      "id": "c80bf41d-3be9-4561-9289-6424eeea1dc4",
+      "title": "이제 될거 같다",
+      "contents": "진짜로",
+      "writeName": "짜장면",
       "isDelete": false
     }
   ],

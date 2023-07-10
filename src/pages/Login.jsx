@@ -18,24 +18,12 @@ function Login() {
     Data();
   }, []);
 
-  // 로그인 기능
-  const loginSubmit = async () => {
-    alert("로그인 되었습니다.");
-    const user = data.find(
-      (user) => user.email === email && user.password === password
-    );
-    await axios.put(`http://localhost:4000/login/${user.id}`, {
-      ...user,
-      isLogin: true,
-    });
-    navigate("/");
-  };
-
-  // 초기화 기능
-  const verificationProcess = (e) => {
+  // 확인 절차 기능
+  const verificationProcess = async (e) => {
     e.preventDefault();
     if (window.confirm("로그인 하시겠습니까?")) {
-      if (validation()) {
+      const value = await validation();
+      if (value) {
         return loginSubmit();
       }
     } else {
@@ -50,13 +38,26 @@ function Login() {
     const userPassword = data.find((user) => user.password === password);
     if (!userId) {
       alert("아이디가 틀렸습니다.");
-      value = false;
+      return false;
     }
     if (!userPassword) {
       alert("비밀번호가 틀렸습니다.");
-      value = false;
+      return false;
     }
     return value;
+  };
+
+  // 로그인 기능
+  const loginSubmit = async () => {
+    alert("로그인 되었습니다.");
+    const user = data.find(
+      (user) => user.email === email && user.password === password
+    );
+    await axios.put(`http://localhost:4000/login/${user.id}`, {
+      ...user,
+      isLogin: true,
+    });
+    navigate("/");
   };
 
   return (

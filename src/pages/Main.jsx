@@ -36,6 +36,24 @@ function Main() {
       setLogin(false)
     );
   };
+
+  const access = (id, writeName) => {
+    if (login) {
+      return vardition(id, writeName);
+    } else {
+      return alert("로그인이 되어야 가능합니다.");
+    }
+  };
+
+  const vardition = (writeName, id) => {
+    console.log(writeName);
+    if (user.userName == writeName) {
+      return deleteBtn(id);
+    } else {
+      return alert("작성한 글이 아닙니다.");
+    }
+  };
+
   const deleteBtn = async (id) => {
     const deleteCheck = window.confirm("삭제하시겟습니까?");
     if (deleteCheck) {
@@ -43,18 +61,12 @@ function Main() {
       alert("삭제되었습니다.");
     }
   };
+
   useEffect(() => {
     writeData();
     userData();
-  }, []);
+  }, [userData]);
 
-  const access = (id) => {
-    if (login) {
-      return deleteBtn(id);
-    } else {
-      return alert("로그인이 되어야 가능합니다.");
-    }
-  };
   return (
     <>
       <StHeader>
@@ -121,7 +133,7 @@ function Main() {
                   <button
                     type="button"
                     onClick={() => {
-                      access(board.id);
+                      access(board.writeName, board.id);
                     }}
                   >
                     삭제

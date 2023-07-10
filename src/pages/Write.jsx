@@ -24,7 +24,7 @@ function Write() {
     id: crypto.randomUUID(),
     title,
     contents,
-    writerId: userName,
+    writeName: userName,
     isDelete: false,
   };
 
