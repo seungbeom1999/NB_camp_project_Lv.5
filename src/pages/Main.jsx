@@ -32,10 +32,14 @@ function Main() {
 
   const logoutSubmit = async () => {
     alert("로그아웃 되었습니다.");
-    await axios.put(`http://localhost:4000/login/${user.id}`, {
-      ...user,
-      isLogin: false,
-    });
+    await axios.put(
+      `http://localhost:4000/login/${user.id}`,
+      {
+        ...user,
+        isLogin: false,
+      },
+      setLogin(false)
+    );
   };
 
   useEffect(() => {
