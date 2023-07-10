@@ -6,13 +6,35 @@
       "password": 1234,
       "userName": "쾌청만두",
       "isLogin": false
+    },
+    {
+      "id": "4c041fea-dfe0-4da0-bc53-ad09bbbfc36d",
+      "email": "khhds00@naver.com",
+      "password": "tmdqja12",
+      "userName": "승범",
+      "isLogin": true
     }
   ],
   "write": [
     {
+      "id": "1",
       "title": "데미안",
       "contents": "재미없어",
       "writeName": "쾌청만두",
+      "isDelete": false
+    },
+    {
+      "id": "e0f02c71-82b5-404a-b1b8-6e75f489d41b",
+      "title": "글을 다양하게 써보자",
+      "contents": "이게 되나?",
+      "writerId": "승범",
+      "isDelete": false
+    },
+    {
+      "id": "c380e462-9b7e-46ac-9af5-f4f0dd77c93f",
+      "title": "이렇게 작성해볼까?",
+      "contents": "요렇게?",
+      "writerId": "승범",
       "isDelete": false
     }
   ],

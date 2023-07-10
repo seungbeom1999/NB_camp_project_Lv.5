@@ -1,27 +1,33 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../redux/modules/userList";
 import useInput from "../hooks/useInput";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useInput();
   const [password, setPassword] = useInput();
-  const valueReset = () => {
-    setEmail("");
-    setPassword("");
+  const [data, setData] = useState([]);
+  const navigate = useNavigate();
+  const Data = async () => {
+    const { data } = await axios.get("http://localhost:4000/login");
+    setData(data);
+    console.log(data);
   };
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.userList);
-  // console.log(data);
+  useEffect(() => {
+    Data();
+  }, []);
 
   // 로그인 기능
-  const loginSubmit = () => {
-    alert(`${email}, ${password}`);
+  const loginSubmit = async () => {
     alert("로그인 되었습니다.");
-    dispatch(login({ email: email, password: password }));
+    const user = data.find(
+      (user) => user.email === email && user.password === password
+    );
+    await axios.put(`http://localhost:4000/login/${user.id}`, {
+      ...user,
+      isLogin: true,
+    });
     navigate("/");
   };
 
@@ -34,12 +40,11 @@ function Login() {
       }
     } else {
       alert("다시 입력해주세요");
-      valueReset();
     }
   };
 
   //유효성 검사
-  const validation = () => {
+  const validation = async () => {
     let value = true;
     const userId = data.find((user) => user.email === email);
     const userPassword = data.find((user) => user.password === password);

@@ -1,33 +1,42 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addPost } from "../redux/modules/boarderList";
 import useInput from "../hooks/useInput";
+import axios from "axios";
 
 function Write() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [title, setTitle] = useInput();
   const [contents, setContents] = useInput();
+  const [userName, setUserName] = useState();
 
-  // const userList = useSelector((state) => state.userList);
-  // const loginUser = userList.find((user) => user.isLogin === true);
-  // const userName = loginUser.userName;
+  const userData = async () => {
+    const { data } = await axios.get("http://localhost:4000/login");
+    const loginUser = data.find((user) => user.isLogin === true);
+    setUserName(loginUser.userName);
+  };
 
-  const handleWriteBtn = () => {
-    dispatch(
-      addPost({
-        title,
-        contents,
-      })
-    );
+  useEffect(() => {
+    userData();
+  }, []);
+
+  const writeBox = {
+    id: crypto.randomUUID(),
+    title,
+    contents,
+    writerId: userName,
+    isDelete: false,
+  };
+
+  const onSubMitHandler = async () => {
+    axios.post("http://localhost:4000/write", writeBox);
     navigate("/");
   };
+
   return (
     <>
       <h1>글 작성 페이지</h1>
-      <form onSubmit={handleWriteBtn}>
+      <form onSubmit={onSubMitHandler}>
         <div>
           책 제목:{" "}
           <input

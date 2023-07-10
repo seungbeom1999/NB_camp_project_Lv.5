@@ -9,26 +9,42 @@ function Main() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const boardList = useSelector((state) => state.boarderList);
-
-  const userList = useSelector((state) => state.userList);
-  const loginUser = userList.find((user) => user.isLogin === true);
-  console.log("userList", userList);
-  console.log("boardList", boardList);
-
   //axios 사용 방법
   const [write, setWrite] = useState(null);
-  const fetchTodos = async () => {
+  const [login, setLogin] = useState(false);
+  const [user, setUser] = useState();
+
+  const writeData = async () => {
     const { data } = await axios.get("http://localhost:4000/write");
-    console.log("data", data);
+    // console.log("data", data);
     setWrite(data);
   };
 
-  useEffect(() => {
-    fetchTodos();
-  }, []);
-  const access = () => {
+  const userData = async () => {
+    const { data } = await axios.get("http://localhost:4000/login");
+    const loginUser = data.find((user) => user.isLogin === true);
     if (loginUser) {
+      setLogin(loginUser.isLogin);
+      setUser(loginUser);
+    }
+    // console.log(loginUser);
+  };
+
+  const logoutSubmit = async () => {
+    alert("로그아웃 되었습니다.");
+    await axios.put(`http://localhost:4000/login/${user.id}`, {
+      ...user,
+      isLogin: false,
+    });
+  };
+
+  useEffect(() => {
+    writeData();
+    userData();
+  }, []);
+
+  const access = () => {
+    if (login) {
       return alert("조금만 기다려주세요~~");
     } else {
       return alert("로그인이 되어야 가능합니다.");
@@ -39,7 +55,7 @@ function Main() {
       <StHeader>
         <span>2023년 도서 리뷰 사이트</span>
         <div>
-          {loginUser ? (
+          {login ? (
             <>
               <button
                 onClick={() => {
@@ -52,7 +68,7 @@ function Main() {
                 onClick={() => {
                   const confirmed = window.confirm("로그아웃 하시겠습니까?");
                   if (confirmed) {
-                    dispatch(logout(loginUser.id));
+                    return logoutSubmit();
                   }
                 }}
               >
@@ -79,9 +95,9 @@ function Main() {
           )}
         </div>
       </StHeader>
-      {loginUser && (
+      {login && user && (
         <StHeader>
-          <span>{loginUser.userName}님 반갑습니다~</span>
+          <span>{user.userName}님 반갑습니다~</span>
         </StHeader>
       )}
       <main>
@@ -93,11 +109,11 @@ function Main() {
             ?.filter((board) => board.isDelete === false)
             .map((board) => {
               return (
-                <Stdiv key={board.id} onClick={access}>
+                <StBtn key={board.id} onClick={access}>
                   <h3>제목: {board.title}</h3>
                   <h4>review: {board.contents}</h4>
-                  <button>댓글 작성</button>
-                </Stdiv>
+                  <button type="button">댓글 작성</button>
+                </StBtn>
               );
             })}
         </div>
@@ -117,7 +133,7 @@ const StHeader = styled.header`
   margin: 5px;
 `;
 
-const Stdiv = styled.button`
+const StBtn = styled.button`
   padding: 5px;
   margin: 5px;
   max-width: 250px;

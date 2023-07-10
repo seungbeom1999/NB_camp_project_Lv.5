@@ -1,26 +1,35 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { join } from "../redux/modules/userList";
 import useInput from "../hooks/useInput";
+import axios from "axios";
 
 function Join() {
   const [email, setEmail] = useInput();
   const [password, setPassword] = useInput();
   const [confirmPassword, setConfirmPassword] = useInput();
   const [userName, setUserName] = useInput();
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
+
   const joimMember = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert("비밀번호가 다릅니다 다시 입력해주세요");
       return false;
     }
-    dispatch(join({ email, password, userName }));
+    axios.post("http://localhost:4000/login", loginBox);
     alert("회원가입 축하드립니다!!");
     navigate("/");
   };
+
+  const loginBox = {
+    id: crypto.randomUUID(),
+    email,
+    password,
+    userName,
+    isLogin: false,
+  };
+
   return (
     <div>
       <div>
