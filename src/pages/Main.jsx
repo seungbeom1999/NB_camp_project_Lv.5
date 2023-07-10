@@ -126,19 +126,21 @@ function Main() {
             ?.filter((board) => board.isDelete === false)
             .map((board) => {
               return (
-                <StBtn key={board.id}>
-                  <h3>제목: {board.title}</h3>
-                  <h4>review: {board.contents}</h4>
-                  <button type="button">댓글 작성</button> &nbsp;
-                  <button
-                    type="button"
-                    onClick={() => {
-                      access(board.writeName, board.id);
-                    }}
-                  >
-                    삭제
-                  </button>
-                </StBtn>
+                <Stform key={board.id}>
+                  <StWrite>제목: {board.title}</StWrite>
+                  <StWrite>review: {board.contents}</StWrite>
+                  <StBtnList>
+                    <button type="button">댓글 작성</button> &nbsp;
+                    <button
+                      type="button"
+                      onClick={() => {
+                        access(board.writeName, board.id);
+                      }}
+                    >
+                      삭제
+                    </button>
+                  </StBtnList>
+                </Stform>
               );
             })}
         </div>
@@ -158,9 +160,8 @@ const StHeader = styled.header`
   margin: 5px;
 `;
 
-const StBtn = styled.button`
+const Stform = styled.form`
   padding: 5px;
-  margin: 5px;
   max-width: 250px;
   min-width: 180px;
   max-height: 130px;
@@ -168,4 +169,17 @@ const StBtn = styled.button`
   background-color: #bfd8ff;
   border: 1px solid black;
   border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+`;
+const StWrite = styled.div`
+  margin: 8px;
+  font-size: 18px;
+  font-weight: 700;
+`;
+const StBtnList = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  margin: 5px;
 `;
