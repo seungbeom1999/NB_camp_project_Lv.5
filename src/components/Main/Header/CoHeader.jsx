@@ -1,8 +1,8 @@
 import React from "react";
-import CoMainHeader from "./CoMainHeader";
-import CoLoginHeader from "./CoLoginHeader";
 import { styled } from "styled-components";
 import axios from "axios";
+import CoLoginHeader from "./CoLoginHeader";
+import CoMainHeader from "./CoMainHeader";
 
 function CoHeader({ login, user, setLogin }) {
   const logoutSubmit = async () => {

@@ -3,8 +3,8 @@ import { styled } from "styled-components";
 import axios from "axios";
 import useInput from "../hooks/useInput";
 import serachImg from "../img/search.png";
-import CoHeader, { StHeader } from "../components/Main/CoHeader";
 import CoWrite from "../components/Main/Write/CoWrite";
+import CoHeader, { StHeader } from "../components/Main/Header/CoHeader";
 
 function Main() {
   //axios 사용 방법
