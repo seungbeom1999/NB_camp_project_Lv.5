@@ -2,8 +2,17 @@ import React from "react";
 import CoMainHeader from "./CoMainHeader";
 import CoLoginHeader from "./CoLoginHeader";
 import { styled } from "styled-components";
+import axios from "axios";
 
-function CoHeader({ login, logoutSubmit }) {
+function CoHeader({ login, user, setLogin }) {
+  const logoutSubmit = async () => {
+    alert("로그아웃 되었습니다.");
+    await axios.put(`http://localhost:4000/login/${user.id}`, {
+      ...user,
+      isLogin: false,
+    });
+    setLogin(false);
+  };
   return (
     <StHeader>
       <span>2023년 도서 리뷰 사이트</span>
