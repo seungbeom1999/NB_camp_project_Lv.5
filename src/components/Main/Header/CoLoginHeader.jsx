@@ -8,7 +8,7 @@ function CoLoginHeader({ logoutSubmit }) {
   return (
     <div>
       <CoButton
-        title="login"
+        title="write"
         size="md"
         onClick={() => {
           navigate("/Write");
@@ -16,7 +16,9 @@ function CoLoginHeader({ logoutSubmit }) {
       >
         글 쓰기
       </CoButton>
-      <button
+      <CoButton
+        title="logout"
+        size="md"
         onClick={() => {
           const confirmed = window.confirm("로그아웃 하시겠습니까?");
           if (confirmed) {
@@ -25,7 +27,7 @@ function CoLoginHeader({ logoutSubmit }) {
         }}
       >
         로그아웃
-      </button>
+      </CoButton>
     </div>
   );
 }

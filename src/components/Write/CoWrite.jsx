@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import useInput from "../../hooks/useInput";
 import { useNavigate } from "react-router-dom";
+import CoButton from "../CoButton";
 
 function CoWrite({ userName }) {
   const navigate = useNavigate();
@@ -42,7 +43,9 @@ function CoWrite({ userName }) {
             placeholder="글 제목을 입력해주세요"
           />
         </div>
-        <button>글 작성</button>
+        <CoButton title="write" size="lg">
+          글 작성
+        </CoButton>
       </form>
     </>
   );

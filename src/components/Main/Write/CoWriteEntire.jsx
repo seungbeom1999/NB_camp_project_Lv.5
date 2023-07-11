@@ -1,5 +1,6 @@
 import React from "react";
 import { StBtnList, StWrite, StWriteForm } from "./CoWrite";
+import CoButton from "../../CoButton";
 
 function CoWriteEntire({ write, access }) {
   return (
@@ -13,14 +14,19 @@ function CoWriteEntire({ write, access }) {
                 <StWrite>제목: {board.title}</StWrite>
                 <StWrite>review: {board.contents}</StWrite>
                 <div>
-                  <button>댓글 작성</button> &nbsp;
-                  <button
+                  <CoButton title="comment" size="sm">
+                    댓글 작성
+                  </CoButton>{" "}
+                  &nbsp;
+                  <CoButton
+                    title="delete"
+                    size="sm"
                     onClick={() => {
                       access({ writeName: board.writeName, id: board.id });
                     }}
                   >
                     삭제
-                  </button>
+                  </CoButton>
                 </div>
               </StWriteForm>
             );

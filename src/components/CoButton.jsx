@@ -93,10 +93,8 @@ const styleBtn = {
 const StyledButton = styled.button`
   ${(props) => props.sizeStyle};
   ${(props) => props.stylefont};
-  margin: 0;
   border: none;
   cursor: pointer;
   font-family: "Noto Sans KR", sans-serif;
-  pointer-events: auto;
 `;
 export default CoButton;

@@ -2,6 +2,7 @@ import React from "react";
 import useInput from "../../hooks/useInput";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import CoButton from "../CoButton";
 
 function CoLogin({ data }) {
   const [email, setEmail] = useInput();
@@ -78,7 +79,9 @@ function CoLogin({ data }) {
         />
       </div>
       <div>
-        <button>로그인</button>
+        <CoButton title="login" size="lg">
+          로그인
+        </CoButton>
       </div>
     </form>
   );

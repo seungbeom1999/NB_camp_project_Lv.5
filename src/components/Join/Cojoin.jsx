@@ -1,5 +1,6 @@
 import React from "react";
 import useInput from "../../hooks/useInput";
+import CoButton from "../CoButton";
 
 function Cojoin({ joinMember }) {
   const [email, setEmail] = useInput();
@@ -57,7 +58,9 @@ function Cojoin({ joinMember }) {
             placeholder="닉네임을 입력하세요"
           />
         </div>
-        <button>회원가입</button>
+        <CoButton title="join" size="lg">
+          회원가입
+        </CoButton>
       </form>
     </div>
   );
