@@ -1,84 +1,31 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import useInput from "../hooks/useInput";
 import axios from "axios";
+import Cojoin from "../components/Join/Cojoin";
 
 function Join() {
-  const [email, setEmail] = useInput();
-  const [password, setPassword] = useInput();
-  const [confirmPassword, setConfirmPassword] = useInput();
-  const [userName, setUserName] = useInput();
-
   const navigate = useNavigate();
 
-  const joimMember = (e) => {
-    e.preventDefault();
+  const joinMember = ({ email, password, confirmPassword, userName }) => {
     if (password !== confirmPassword) {
       alert("비밀번호가 다릅니다 다시 입력해주세요");
       return false;
     }
+
+    const loginBox = {
+      id: crypto.randomUUID(),
+      email,
+      password,
+      userName,
+      isLogin: false,
+    };
+
     axios.post("http://localhost:4000/login", loginBox);
     alert("회원가입 축하드립니다!!");
     navigate("/");
   };
 
-  const loginBox = {
-    id: crypto.randomUUID(),
-    email,
-    password,
-    userName,
-    isLogin: false,
-  };
-
-  return (
-    <div>
-      <div>
-        <h1>회원가입</h1>
-      </div>
-      <form onSubmit={joimMember}>
-        <div>
-          <span>아이디 </span> <br />
-          <input
-            type="text"
-            value={email}
-            onChange={setEmail}
-            placeholder="이메일을 입력하세요"
-          />
-        </div>
-
-        <div>
-          <span>비밀번호 </span> <br />
-          <input
-            type="password"
-            value={password}
-            onChange={setPassword}
-            placeholder="비밀번호를 입력하세요"
-          />
-        </div>
-
-        <div>
-          <span>확인 비밀번호 </span> <br />
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={setConfirmPassword}
-            placeholder="비밀번호를 입력하세요"
-          />
-        </div>
-
-        <div>
-          <span>닉네임 </span> <br />
-          <input
-            type="text"
-            value={userName}
-            onChange={setUserName}
-            placeholder="닉네임을 입력하세요"
-          />
-        </div>
-        <button>회원가입</button>
-      </form>
-    </div>
-  );
+  return <Cojoin joinMember={joinMember} />;
 }
 
 export default Join;

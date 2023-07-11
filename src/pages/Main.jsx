@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import axios from "axios";
 import useInput from "../hooks/useInput";
 import serachImg from "../img/search.png";
+import CoHeader, { StHeader } from "../components/Main/CoHeader";
 
 function Main() {
-  const navigate = useNavigate();
-
   //axios 사용 방법
   const [write, setWrite] = useState(null);
   const [login, setLogin] = useState(false);
@@ -85,58 +83,13 @@ function Main() {
 
   return (
     <>
-      <StHeader>
-        <span>2023년 도서 리뷰 사이트</span>
-        <div>
-          {login ? (
-            <>
-              <button
-                onClick={() => {
-                  navigate("/Write");
-                }}
-              >
-                글 쓰기
-              </button>
-              <button
-                onClick={() => {
-                  const confirmed = window.confirm("로그아웃 하시겠습니까?");
-                  if (confirmed) {
-                    return logoutSubmit();
-                  }
-                }}
-              >
-                로그아웃
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                onClick={() => {
-                  navigate("/Login");
-                }}
-              >
-                로그인
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/join");
-                }}
-              >
-                회원 가입
-              </button>
-            </>
-          )}
-        </div>
-      </StHeader>
+      <CoHeader login={login} logoutSubmit={logoutSubmit} />
       {login && user && (
         <StHeader>
           <span>{user.userName}님 반갑습니다~</span>
         </StHeader>
       )}
       <main>
-        <div>
-          <h1>게시판</h1>
-        </div>
         <StSearch>
           검색: &nbsp;
           <input type="text" value={title} onChange={setTitle} /> &nbsp;
@@ -144,6 +97,10 @@ function Main() {
             <img src={serachImg} alt="돋보기" />
           </button>
         </StSearch>
+
+        <div>
+          <h1>게시판</h1>
+        </div>
 
         <StBtnList>
           {write
@@ -197,15 +154,6 @@ function Main() {
 
 export default Main;
 
-const StHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid black;
-  border-radius: 12px;
-  padding: 5px;
-  margin: 5px;
-`;
-
 const StSearch = styled.form`
   margin-bottom: 30px;
   display: flex;
@@ -231,7 +179,7 @@ const StWrite = styled.div`
 `;
 const StBtnList = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding: 5px;
   margin: 5px;
 `;
