@@ -2,8 +2,9 @@ import React from "react";
 import CoWriteEntire from "./CoWriteEntire";
 import CoWriteSearch from "./CoWriteSearch";
 import axios from "axios";
+import { styled } from "styled-components";
 
-function CoWrite({ login, user, write, filterWrite }) {
+function CoWrite({ login, user, write, writeData }) {
   const access = ({ id, writeName }) => {
     if (login) {
       return vardition(id, writeName);
@@ -29,12 +30,57 @@ function CoWrite({ login, user, write, filterWrite }) {
     }
   };
 
+  const handlerRefresh = () => {
+    writeData();
+  };
+
   return (
     <>
+      <StNotice onClick={handlerRefresh}>게시판</StNotice>
       <CoWriteEntire write={write} access={access} />
-      <CoWriteSearch filterWrite={filterWrite} access={access} />
+      <CoWriteSearch write={write} access={access} />
     </>
   );
 }
 
 export default CoWrite;
+
+export const StNotice = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  width: 200px;
+  height: 50px;
+  border: 1px solid #d3a27f;
+  border-radius: 12px;
+  margin: 0 auto;
+`;
+export const StBtnList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 5px;
+  margin: 5px;
+  gap: 20px;
+`;
+
+export const StWriteForm = styled.div`
+  padding: 5px;
+  max-width: 250px;
+  min-width: 180px;
+  max-height: 130px;
+  min-height: 125px;
+  background-color: #f2dfd3;
+  border: 1px solid #d3a27f;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const StWrite = styled.div`
+  margin: 8px;
+  font-size: 18px;
+  font-weight: 700;
+`;
