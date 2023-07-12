@@ -55,32 +55,7 @@ export const StNotice = styled.button`
   width: 200px;
   height: 50px;
   border: 1px solid #d3a27f;
+  background-color: #f5f5dc;
   border-radius: 12px;
   margin: 0 auto;
-`;
-export const StBtnList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 5px;
-  margin: 5px;
-  gap: 20px;
-`;
-
-export const StWriteForm = styled.div`
-  padding: 5px;
-  max-width: 250px;
-  min-width: 180px;
-  max-height: 130px;
-  min-height: 125px;
-  background-color: #f2dfd3;
-  border: 1px solid #d3a27f;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const StWrite = styled.div`
-  margin: 8px;
-  font-size: 18px;
-  font-weight: 700;
 `;

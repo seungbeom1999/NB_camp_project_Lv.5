@@ -1,7 +1,7 @@
 import React from "react";
 import { StHeader } from "./CoHeader";
 
-function CoSearch({ user, login }) {
+function CoNickName({ user, login }) {
   return (
     login &&
     user && (
@@ -12,4 +12,4 @@ function CoSearch({ user, login }) {
   );
 }
 
-export default CoSearch;
+export default CoNickName;

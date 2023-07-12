@@ -26,8 +26,10 @@ export default CoHeader;
 export const StHeader = styled.header`
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
-  border-radius: 12px;
+  align-items: center;
   padding: 5px;
   margin: 5px;
+  border: 1px solid white;
+  border-radius: 12px;
+  background-color: #f5f5dc;
 `;

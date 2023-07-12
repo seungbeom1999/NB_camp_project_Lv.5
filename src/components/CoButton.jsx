@@ -25,11 +25,23 @@ const sizes = {
     border-radius: 12px;
     margin: 0 6px;
   `,
+  exmd: css`
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin: 20px 50px;
+  `,
   lg: css`
     font-size: 1rem;
     padding: 6px 12px;
     border-radius: 12px;
     margin: 0 6px;
+  `,
+  exlg: css`
+    font-size: 1rem;
+    padding: 6px 12px;
+    border-radius: 12px;
+    margin: 20px 42px;
   `,
 };
 
@@ -40,7 +52,7 @@ const styleBtn = {
     color: #2e2627;
     background-color: #e4c0a8;
     &:hover {
-      background-color: #964b00;
+      background-color: #c08457;
     }
   `,
   join: css`
@@ -49,7 +61,7 @@ const styleBtn = {
     color: #2e2627;
     background-color: #e4c0a8;
     &:hover {
-      background-color: #964b00;
+      background-color: #c08457;
     }
   `,
   logout: css`
@@ -58,14 +70,14 @@ const styleBtn = {
     color: #2e2627;
     background-color: #e4c0a8;
     &:hover {
-      background-color: #964b00;
+      background-color: #c08457;
     }
   `,
   write: css`
     font-size: 1rem;
     font-weight: 600;
     color: #2e2627;
-    background-color: #f5f5dc;
+    background-color: #e0e094;
     &:hover {
       background-color: #c08457;
     }
@@ -74,18 +86,18 @@ const styleBtn = {
     font-size: 1rem;
     font-weight: 600;
     color: #473b3d;
-    background-color: #8d192b;
+    background-color: #d4c78c;
     &:hover {
-      background-color: #ff5339;
+      background-color: #ddcd83;
     }
   `,
   comment: css`
     font-size: 1rem;
     font-weight: 600;
     color: #473b3d;
-    background-color: #4accff;
+    background-color: #e0e094;
     &:hover {
-      background-color: #00ffff;
+      background-color: #d4c78c;
     }
   `,
 };

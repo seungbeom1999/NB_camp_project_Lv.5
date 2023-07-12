@@ -3,6 +3,7 @@ import useInput from "../../hooks/useInput";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CoButton from "../CoButton";
+import { styled } from "styled-components";
 
 function CoLogin({ data }) {
   const [email, setEmail] = useInput();
@@ -60,26 +61,28 @@ function CoLogin({ data }) {
       <div>
         <h1>로그인</h1>
       </div>
+      <Stdiv>
+        <div>
+          <span>이메일</span> <br />
+          <input
+            type="text"
+            value={email}
+            onChange={setEmail}
+            placeholder="이메일을 입력해주세요"
+          />
+        </div>
+        <div>
+          <span>비밀번호</span> <br />
+          <input
+            type="password"
+            value={password}
+            onChange={setPassword}
+            placeholder="비밀번호를 입력해주세요"
+          />
+        </div>
+      </Stdiv>
       <div>
-        <span>이메일</span> <br />
-        <input
-          type="text"
-          value={email}
-          onChange={setEmail}
-          placeholder="이메일을 입력해주세요"
-        />
-      </div>
-      <div>
-        <span>비밀번호</span> <br />
-        <input
-          type="password"
-          value={password}
-          onChange={setPassword}
-          placeholder="비밀번호를 입력해주세요"
-        />
-      </div>
-      <div>
-        <CoButton title="login" size="lg">
+        <CoButton title="login" size="exmd">
           로그인
         </CoButton>
       </div>
@@ -88,3 +91,10 @@ function CoLogin({ data }) {
 }
 
 export default CoLogin;
+
+export const Stdiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px;
+`;
