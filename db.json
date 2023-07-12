@@ -5,7 +5,7 @@
       "email": "khhds00@naver.com",
       "password": "tmdqja12",
       "userName": "승범",
-      "isLogin": false
+      "isLogin": true
     },
     {
       "id": "8ba9b329-1d2e-4112-a2ea-223be773fb7f",
@@ -19,17 +19,10 @@
       "email": "부계정",
       "password": "1234",
       "userName": "진라면",
-      "isLogin": true
+      "isLogin": false
     }
   ],
   "write": [
-    {
-      "id": "d9461d7d-bbe4-47c3-bd84-c5f4f55d2773",
-      "title": "데미안",
-      "contents": "헤르만 헤세",
-      "writeName": "승범",
-      "search": false
-    },
     {
       "id": "02b707c6-feb5-4c96-8ae2-2da6a7b52f16",
       "title": "어린 왕자",
@@ -49,6 +42,13 @@
       "title": "생각 비우기 연습",
       "contents": "도움이 되는 책이었네여",
       "writeName": "진라면",
+      "search": false
+    },
+    {
+      "id": "4ff4a3e3-32f8-43ad-b619-fbe367778e9c",
+      "title": "값을 바꾼다",
+      "contents": "값 바꾸기\n",
+      "writeName": "승범",
       "search": false
     }
   ],

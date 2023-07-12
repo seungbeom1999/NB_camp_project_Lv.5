@@ -2,11 +2,10 @@ import styled, { css } from "styled-components";
 import React from "react";
 
 function CoButton({ size, title, children, onClick }) {
-  const sizeStyle = sizes[size];
+  const sizestyle = sizes[size];
   const stylefont = styleBtn[title];
-  console.log(stylefont);
   return (
-    <StyledButton sizeStyle={sizeStyle} stylefont={stylefont} onClick={onClick}>
+    <StyledButton sizestyle={sizestyle} stylefont={stylefont} onClick={onClick}>
       {children}
     </StyledButton>
   );
@@ -103,7 +102,7 @@ const styleBtn = {
 };
 
 const StyledButton = styled.button`
-  ${(props) => props.sizeStyle};
+  ${(props) => props.sizestyle};
   ${(props) => props.stylefont};
   border: none;
   cursor: pointer;

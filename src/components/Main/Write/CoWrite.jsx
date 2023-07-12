@@ -14,7 +14,6 @@ function CoWrite({ login, user, write, writeData }) {
   };
 
   const vardition = (id, writeName) => {
-    console.log(writeName);
     if (user.userName === writeName) {
       return deleteBtn(id);
     } else {
@@ -37,8 +36,8 @@ function CoWrite({ login, user, write, writeData }) {
   return (
     <>
       <StNotice onClick={handlerRefresh}>게시판</StNotice>
-      <CoWriteEntire write={write} access={access} />
-      <CoWriteSearch write={write} access={access} />
+      <CoWriteEntire write={write} access={access} login={login} user={user} />
+      <CoWriteSearch write={write} access={access} login={login} user={user} />
     </>
   );
 }
