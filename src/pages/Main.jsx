@@ -20,6 +20,11 @@ function Main() {
   const [user, setUser] = useState();
   const [title, setTitle] = useInput();
 
+  useEffect(() => {
+    writeData();
+    userData();
+  }, []);
+
   const writeData = async () => {
     const { data } = await axios.get("http://localhost:4000/write");
     setWrite(data);
@@ -33,11 +38,6 @@ function Main() {
       setUser(loginUser);
     }
   };
-
-  useEffect(() => {
-    writeData();
-    userData();
-  }, []);
 
   return (
     <>

@@ -6,30 +6,36 @@ import axios from "axios";
 import useInput from "../../../hooks/useInput";
 
 function CoWriteEntire({ write, access, login, user }) {
-  const [comment, setComment] = useState(false);
+  const [comment, setComment] = useState(null);
   const [newTitle, setNewTitle] = useInput("");
   const [newcontents, setNewContents] = useInput("");
 
-  const openModal = () => {
-    setComment(true);
+  const openModal = async ({ id }) => {
+    const { data } = await axios.get("http://localhost:4000/write");
+    const write = data.find((user) => user.id === id);
+    console.log(write);
+
+    if (id === write.id) {
+      setComment(id);
+    } else {
+      return setComment(null);
+    }
   };
   const closeModal = () => {
-    setComment(false);
+    setComment(null);
   };
 
   const updateAccess = ({ id, writeName }) => {
-    if (id === write.id && writeName === write.writeName) {
-      if (login) {
-        return updatevardition({ writeName });
-      } else {
-        return alert("로그인이 되어야 가능합니다.");
-      }
+    if (login) {
+      return updatevardition({ id, writeName });
+    } else {
+      return alert("로그인이 되어야 가능합니다.");
     }
   };
 
-  const updatevardition = ({ writeName }) => {
+  const updatevardition = ({ id, writeName }) => {
     if (user.userName === writeName) {
-      return openModal();
+      return openModal({ id });
     } else {
       alert("작성한 글이 아닙니다.");
     }
@@ -81,7 +87,7 @@ function CoWriteEntire({ write, access, login, user }) {
                     </CoButton>
                   </StBtnDiv>
                 </StWriteForm>
-                {comment && (
+                {comment === board.id && (
                   <CoCommentform
                     closeModal={closeModal}
                     id={board.id}

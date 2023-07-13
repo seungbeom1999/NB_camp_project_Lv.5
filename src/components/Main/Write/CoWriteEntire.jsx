@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CoButton from "../../CoButton";
 import { styled } from "styled-components";
 import CoCommentform from "../../CoCommentform";
@@ -9,6 +9,10 @@ function CoWriteEntire({ write, access, login, user }) {
   const [comment, setComment] = useState(null);
   const [newTitle, setNewTitle] = useInput("");
   const [newcontents, setNewContents] = useInput("");
+
+  useEffect(() => {
+    setComment();
+  }, [setComment]);
 
   const openModal = async ({ id }) => {
     const { data } = await axios.get("http://localhost:4000/write");

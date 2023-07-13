@@ -20,23 +20,16 @@
       "password": "1234",
       "userName": "진라면",
       "isLogin": false
+    },
+    {
+      "id": "efc843af-26d9-445b-ab23-56d92301ed7d",
+      "email": "khhds4@naver.com",
+      "password": "tmdqja12",
+      "userName": "레쓰비",
+      "isLogin": false
     }
   ],
   "write": [
-    {
-      "id": "02b707c6-feb5-4c96-8ae2-2da6a7b52f16",
-      "title": "어린 왕자",
-      "contents": "생 떽쥐 베리",
-      "writeName": "승범",
-      "search": false
-    },
-    {
-      "id": "6ad7d97d-572f-4475-a569-c47c104499f9",
-      "title": "빠르게 실패하기",
-      "contents": "실패하는 법에 도움을 주는 책",
-      "writeName": "승범",
-      "search": false
-    },
     {
       "id": "b5138d96-63c5-4553-9d30-8e3bc75e2a55",
       "title": "생각 비우기 연습",
@@ -45,9 +38,16 @@
       "search": false
     },
     {
-      "id": "4ff4a3e3-32f8-43ad-b619-fbe367778e9c",
-      "title": "값을 바꾼다",
-      "contents": "값 바꾸기\n",
+      "id": "ba8af8ad-c400-41f6-b774-94322f984c7c",
+      "title": "데미안",
+      "contents": "헤르만 헤세",
+      "writeName": "승범",
+      "search": false
+    },
+    {
+      "id": "b221b283-db9e-4902-9408-b6e6743ea382",
+      "title": "인간 실격",
+      "contents": "다자이 오사무",
       "writeName": "승범",
       "search": false
     }
