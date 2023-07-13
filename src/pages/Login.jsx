@@ -6,7 +6,7 @@ function Login() {
   const [data, setData] = useState([]);
 
   const Data = async () => {
-    const { data } = await axios.get("http://localhost:4000/login");
+    const { data } = await axios.get(process.env.REACT_APP_SERVER_LOGIN);
     setData(data);
   };
 

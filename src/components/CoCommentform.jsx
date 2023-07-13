@@ -4,8 +4,6 @@ import { styled } from "styled-components";
 import useInput from "../hooks/useInput";
 
 function CoCommentform({ closeModal, id, title, contents, updateBtn }) {
-  console.log(title);
-  console.log(contents);
   const [newTitle, setNewTitle] = useInput(title);
   const [newcontents, setNewContents] = useInput(contents);
 
@@ -17,7 +15,7 @@ function CoCommentform({ closeModal, id, title, contents, updateBtn }) {
   };
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <StModalBox>
           <StModalContents>
             <StTextarea

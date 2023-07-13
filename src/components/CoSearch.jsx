@@ -5,7 +5,9 @@ import { styled } from "styled-components";
 function CoSearch({ title, setTitle, write, setWrite }) {
   const writeFilter = (e) => {
     e.preventDefault();
-    const writefilteringList = write.filter((item) => item.title === title);
+    const writefilteringList = write.filter((item) =>
+      item.title.includes(title)
+    );
     const updateList = writefilteringList.map((item) => ({
       ...item,
       search: true,

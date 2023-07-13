@@ -7,7 +7,7 @@ import CoMainHeader from "./CoMainHeader";
 function CoHeader({ login, user, setLogin }) {
   const logoutSubmit = async () => {
     alert("로그아웃 되었습니다.");
-    await axios.put(`http://localhost:4000/login/${user.id}`, {
+    await axios.put(`${process.env.REACT_APP_SERVER_LOGIN}/${user.id}`, {
       ...user,
       isLogin: false,
     });

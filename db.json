@@ -47,7 +47,14 @@
     {
       "id": "b221b283-db9e-4902-9408-b6e6743ea382",
       "title": "인간 실격",
-      "contents": "다자이 오사무",
+      "contents": "다자이 오사무\n",
+      "writeName": "승범",
+      "search": false
+    },
+    {
+      "id": "5769ba47-dc46-4fee-a794-40b7a95d7a19",
+      "title": "생각을 멈춰라",
+      "contents": "제목이 오래 기억에 남네요",
       "writeName": "승범",
       "search": false
     }

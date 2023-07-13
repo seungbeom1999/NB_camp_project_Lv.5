@@ -26,12 +26,12 @@ function Main() {
   }, []);
 
   const writeData = async () => {
-    const { data } = await axios.get("http://localhost:4000/write");
+    const { data } = await axios.get(process.env.REACT_APP_SERVER_WRITE);
     setWrite(data);
   };
 
   const userData = async () => {
-    const { data } = await axios.get("http://localhost:4000/login");
+    const { data } = await axios.get(process.env.REACT_APP_SERVER_LOGIN);
     const loginUser = data.find((userData) => userData.isLogin === true);
     if (loginUser) {
       setLogin(loginUser.isLogin);

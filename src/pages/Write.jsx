@@ -6,7 +6,7 @@ function Write() {
   const [userName, setUserName] = useState();
 
   const userData = async () => {
-    const { data } = await axios.get("http://localhost:4000/login");
+    const { data } = await axios.get(process.env.REACT_APP_SERVER_LOGIN);
     const loginUser = data.find((user) => user.isLogin === true);
     setUserName(loginUser.userName);
   };

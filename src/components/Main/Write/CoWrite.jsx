@@ -24,7 +24,7 @@ function CoWrite({ login, user, write, writeData }) {
   const deleteBtn = async (id) => {
     const deleteCheck = window.confirm("삭제하시겟습니까?");
     if (deleteCheck) {
-      await axios.delete(`http://localhost:4000/write/${id}`);
+      await axios.delete(`${process.env.REACT_APP_SERVER_WRITE}/${id}`);
       alert("삭제되었습니다.");
       writeData();
     }
@@ -41,8 +41,20 @@ function CoWrite({ login, user, write, writeData }) {
   return (
     <>
       <StNotice onClick={handlerRefresh}>게시판</StNotice>
-      <CoWriteEntire write={write} access={access} login={login} user={user} />
-      <CoWriteSearch write={write} access={access} login={login} user={user} />
+      <CoWriteEntire
+        write={write}
+        access={access}
+        login={login}
+        user={user}
+        writeData={writeData}
+      />
+      <CoWriteSearch
+        write={write}
+        access={access}
+        login={login}
+        user={user}
+        writeData={writeData}
+      />
     </>
   );
 }

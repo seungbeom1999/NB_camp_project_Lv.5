@@ -20,7 +20,7 @@ function Join() {
       isLogin: false,
     };
 
-    axios.post("http://localhost:4000/login", loginBox);
+    axios.post(process.env.REACT_APP_SERVER_LOGIN, loginBox);
     alert("회원가입 축하드립니다!!");
     navigate("/");
   };

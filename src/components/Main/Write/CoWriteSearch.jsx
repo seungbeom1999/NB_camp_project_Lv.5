@@ -11,9 +11,8 @@ function CoWriteEntire({ write, access, login, user }) {
   const [newcontents, setNewContents] = useInput("");
 
   const openModal = async ({ id }) => {
-    const { data } = await axios.get("http://localhost:4000/write");
+    const { data } = await axios.get(process.env.REACT_APP_SERVER_WRITE);
     const write = data.find((user) => user.id === id);
-    console.log(write);
 
     if (id === write.id) {
       setComment(id);
@@ -42,9 +41,9 @@ function CoWriteEntire({ write, access, login, user }) {
   };
 
   const updateBtn = async (id, newTitle, newcontents) => {
-    const { data } = await axios.get("http://localhost:4000/write");
+    const { data } = await axios.get(process.env.REACT_APP_SERVER_WRITE);
     const user = data.find((user) => user.id === id);
-    await axios.put(`http://localhost:4000/write/${user.id}`, {
+    await axios.put(`${process.env.REACT_APP_SERVER_WRITE}/${user.id}`, {
       ...user,
       title: newTitle,
       contents: newcontents,

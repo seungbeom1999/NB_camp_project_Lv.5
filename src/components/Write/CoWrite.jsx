@@ -18,7 +18,7 @@ function CoWrite({ userName }) {
       writeName: userName,
       search: false,
     };
-    axios.post("http://localhost:4000/write", writeBox);
+    axios.post(process.env.REACT_APP_SERVER_WRITE, writeBox);
     navigate("/");
   };
 
