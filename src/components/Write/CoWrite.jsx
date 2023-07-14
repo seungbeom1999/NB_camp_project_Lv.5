@@ -19,7 +19,7 @@ function CoWrite({ userName }) {
       search: false,
     };
     axios.post(process.env.REACT_APP_SERVER_WRITE, writeBox);
-    navigate("/");
+    navigate("/Main");
   };
 
   return (

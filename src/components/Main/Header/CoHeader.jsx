@@ -3,8 +3,11 @@ import { styled } from "styled-components";
 import axios from "axios";
 import CoLoginHeader from "./CoLoginHeader";
 import CoMainHeader from "./CoMainHeader";
+import { useNavigate } from "react-router-dom";
 
 function CoHeader({ login, user, setLogin }) {
+  const navigate = useNavigate();
+
   const logoutSubmit = async () => {
     alert("로그아웃 되었습니다.");
     await axios.put(`${process.env.REACT_APP_SERVER_LOGIN}/${user.id}`, {
@@ -12,6 +15,7 @@ function CoHeader({ login, user, setLogin }) {
       isLogin: false,
     });
     setLogin(false);
+    navigate("/");
   };
   return (
     <StHeader>

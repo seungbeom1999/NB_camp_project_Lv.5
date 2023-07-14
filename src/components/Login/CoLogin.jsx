@@ -53,7 +53,10 @@ function CoLogin({ data }) {
       ...user,
       isLogin: true,
     });
-    navigate("/");
+    navigate("/Main");
+  };
+  const joinSubmit = () => {
+    navigate("/Join");
   };
 
   return (
@@ -84,6 +87,11 @@ function CoLogin({ data }) {
       <div>
         <CoButton title="login" size="exmd">
           로그인
+        </CoButton>
+      </div>
+      <div>
+        <CoButton type="button" title="login" size="exmd" onClick={joinSubmit}>
+          회원가입
         </CoButton>
       </div>
     </form>
