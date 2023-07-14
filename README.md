@@ -20,4 +20,4 @@
 
 # IMG
 
-<img src="https://blog.kakaocdn.net/dn/rAP7t/btsnyKUhLJf/toSiFE2SS48dnMvruW2cpk/img.png" width="200" height="400" />
+<img src="https://blog.kakaocdn.net/dn/rAP7t/btsnyKUhLJf/toSiFE2SS48dnMvruW2cpk/img.png" />
