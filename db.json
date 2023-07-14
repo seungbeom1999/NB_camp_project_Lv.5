@@ -2,15 +2,15 @@
   "login": [
     {
       "id": "4c041fea-dfe0-4da0-bc53-ad09bbbfc36d",
-      "email": "khhds00@naver.com",
-      "password": "tmdqja12",
+      "email": "test@naver.com",
+      "password": "0123",
       "userName": "승범",
-      "isLogin": true
+      "isLogin": false
     },
     {
       "id": "8ba9b329-1d2e-4112-a2ea-223be773fb7f",
-      "email": "test@naver.com",
-      "password": "tmdqja12",
+      "email": "test00@naver.com",
+      "password": "3545",
       "userName": "짜장면",
       "isLogin": false
     },
@@ -23,10 +23,17 @@
     },
     {
       "id": "efc843af-26d9-445b-ab23-56d92301ed7d",
-      "email": "khhds4@naver.com",
-      "password": "tmdqja12",
+      "email": "name@naver.com",
+      "password": "0123",
       "userName": "레쓰비",
       "isLogin": false
+    },
+    {
+      "id": "b8d92820-acfc-4e35-9a0f-353d2dbb7a28",
+      "email": "test@gmail.com",
+      "password": "3545",
+      "userName": "로그인",
+      "isLogin": true
     }
   ],
   "write": [
@@ -41,7 +48,7 @@
       "id": "ba8af8ad-c400-41f6-b774-94322f984c7c",
       "title": "데미안",
       "contents": "헤르만 헤세",
-      "writeName": "승범",
+      "writeName": "레쓰비",
       "search": false
     },
     {
@@ -55,14 +62,15 @@
       "id": "5769ba47-dc46-4fee-a794-40b7a95d7a19",
       "title": "생각을 멈춰라",
       "contents": "제목이 오래 기억에 남네요",
-      "writeName": "승범",
+      "writeName": "짜장면",
       "search": false
-    }
-  ],
-  "comments": [
+    },
     {
-      "title": "취향 차이는 확실한것 같네요",
-      "contents": "저는 재밌게 읽었던 것 같아요"
+      "id": "56d2d641-a0a9-406d-8f8f-44a74d488d57",
+      "title": "모든것은 기초부터",
+      "contents": "기초가 제일 중요하다",
+      "writeName": "로그인",
+      "search": false
     }
   ]
 }
