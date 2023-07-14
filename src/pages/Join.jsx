@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cojoin from "../components/Join/Cojoin";
+import { Cookies } from "react-cookie";
 
 function Join() {
   const navigate = useNavigate();
@@ -19,8 +20,15 @@ function Join() {
       userName,
       isLogin: false,
     };
+    const cookie = new Cookies();
+    const idCookie = cookie.get(loginBox.id);
 
-    axios.post(process.env.REACT_APP_SERVER_LOGIN, loginBox);
+    axios.post(process.env.REACT_APP_SERVER_LOGIN, loginBox, {
+      withCredentials: true,
+      headers: {
+        Cookie: `id=${idCookie}`,
+      },
+    });
     alert("회원가입 축하드립니다!!");
     navigate("/");
   };

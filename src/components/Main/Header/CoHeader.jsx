@@ -17,10 +17,16 @@ function CoHeader({ login, user, setLogin }) {
     setLogin(false);
     navigate("/");
   };
+
+  if (!login) {
+    alert("로그인을 하셔야 합니다.");
+    navigate("/");
+    return null;
+  }
   return (
     <StHeader>
       <span>2023년 도서 리뷰 사이트</span>
-      {login ? <CoLoginHeader logoutSubmit={logoutSubmit} /> : <CoMainHeader />}
+      <CoLoginHeader logoutSubmit={logoutSubmit} />
     </StHeader>
   );
 }

@@ -31,7 +31,9 @@ function Main() {
   };
 
   const userData = async () => {
-    const { data } = await axios.get(process.env.REACT_APP_SERVER_LOGIN);
+    const { data } = await axios.get(process.env.REACT_APP_SERVER_LOGIN, {
+      withCredentials: true,
+    });
     const loginUser = data.find((userData) => userData.isLogin === true);
     if (loginUser) {
       setLogin(loginUser.isLogin);
